@@ -1,0 +1,26 @@
+ DECLARE @sql nvarchar(max),
+          @sql_param  nvarchar(max)
+BEGIN TRY
+ SET @sql_param = '@InSittingID int'
+ set @sql = '
+ SELECT DISTINCT sec.[name] , count(*) cnt
+  FROM v_acs_BillingDoors_list1 bil
+   JOIN v_acs_BillingDoorsRef_list1 bilr1 ON bilr1.billing_ID = bil.billing_ID AND bilr1.ref_type=256
+    JOIN v_acs_BillingDoorsRef_list1 bilr2 ON bilr2.billing_ID = bil.billing_ID AND bilr2.ref_type=258
+       join v_tk_ASubscriptionsTickets_list1 st on st.ticket_ID = bilr2.ref_ID
+		join v_tk_ASubscriptionsSeriesSittings ser_sit on st.subscription_series_ID = ser_sit.subscription_series_ID and ser_sit.sitting_ID = @InSittingID
+		 join v_tk_SittingsSeats_i sit on sit.ID = st.seat_ID
+		  join v_tk_SittingsSectors_list1 sec on sit.sitting_sector_ID = sec.sitting_sector_ID
+WHERE bil.[error]=0
+    AND bil.[state]=3
+    and bil.direction = 0
+    and bilr1.ref_ID = @InSittingID
+' +case
+      when @Intype = 0 then '' 
+      when @Intype = 1 then ' and isnull(st.price,1) >0 ' 
+      when @Intype = 2 then ' and st.price = 0 ' 
+    end  +'
+  group by sec.[name] 
+  order by sec.[name]'
+  
+ exec sp_executesql @sql , @sql_param, @InSittingId

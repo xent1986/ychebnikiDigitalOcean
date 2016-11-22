@@ -1,0 +1,16 @@
+<a target="_blank" href="<?php echo "http://sport-landia.com/categories/catlist/section/".$this->section."/cat/".$this->cat;?>" title="Sport-Landia.com - интернет-магазин товаров для спорта и активного тодыха">
+<div class="my_banner_container">
+ <div class="my_banner_logo">
+  <div class="mbl_title">Sport-Landia.com</div>
+  <div class="mbl_desc">товары для спорта и отдыха</div>
+ </div>
+ <div class="my_banner_image">
+  <img src="<?php echo $this->pic;?>" onload="resizeme($(this),120,180);">
+ </div>
+ <div class="my_banner_first_cat"><?php echo $this->first;?></div>
+ <?php if ($this->second!==""):?>
+  <div class="my_banner_second_cat"><?php echo $this->second;?></div>
+ <?php endif;?>
+ <div class="my_banner_price"><?php echo "от ".$this->price." руб.";?></div>
+</div>
+</a>

@@ -1,0 +1,11 @@
+<?php if ($this->layout()->firstelement==1):?>
+<?php $this->layout()->firstelement=0;?>
+<div class="legend_first_space left">
+</div>
+<?php else:?>
+<div class="legend_space left">
+</div>
+<?php endif;?>
+<div class="legend_item left">
+ <a href="<?php echo $this->url(array('controller'=>'categories','action'=>'catlist','section'=>$this->layout()->section,'cat'=>$this->id),null,true);?>" title="<?php echo glob_quoteStr($this->name);?>"><?php echo $this->name;?></a>
+</div>

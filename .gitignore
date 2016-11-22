@@ -1,0 +1,12 @@
+error_log
+ymlcatalog.xml
+index.php
+/mycache
+/nbproject/private/
+sitemap1.xml
+sitemap2.xml
+sitemap3.xml
+test.txt
+ymlcatalog2.xml
+/application/utils/zend_settings.php
+cartFrame.html

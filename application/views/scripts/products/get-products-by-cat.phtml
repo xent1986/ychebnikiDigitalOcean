@@ -1,0 +1,29 @@
+<?php $this->headMeta()->setName('description',DESC.'Товары из категории '.$this->caption);?>
+<div class="products_all">
+<?php
+ $pp = array('cat'=>$this->category,'section'=>$this->section);
+ echo $this->action('categorylegend','categories',null,$pp);
+?>
+<?php $this->headTitle($this->caption);?>
+<div class="products_all_caption">
+ <div class="pa_caption_name left"><h1><?php echo $this->caption;?></h1></div>
+ <div class="pa_caption_itemscount right">Товаров в категории: <?php echo $this->pager->getPages()->totalItemCount;?>)</div>
+ <div class="pa_caption_pages right">(Страница: <?php echo $this->pager->getPages()->current;?> из <?php echo $this->pager->getPages()->pageCount;?></div>
+ <div class="clear"></div>
+</div>
+<?php
+ $params = array('section'=>$this->section,'category'=>$this->category,'sort'=>$this->sort,'perpage'=>$this->perpage,'mode'=>'cat');
+ echo $this->partial("sorts_toolbar.phtml",$params);
+?>
+    <div class="google_ad">
+        <?php echo $this->adsense;?>
+    </div>
+<?php
+ $params = array('products'=>$this->products);
+ echo $this->partial("products_table_tmpl.phtml",$params);
+?>
+<?php
+ $params = array('pager'=>$this->pager,'section'=>$this->section);
+ echo $this->partial("paginator_tmpl.phtml",$params);
+?>
+</div>

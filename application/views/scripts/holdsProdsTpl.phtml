@@ -1,0 +1,6 @@
+<div class="h_item">
+<?php $pic = ($this->picture==''?'/images/nopic.png':$this->picture);?>
+<?php $url = $this->url(array('controller'=>'products','action'=>'getdetails','item'=>$this->translit),null,true);?>
+ <div class="ps_item_title"><h2><a href="<?php echo $url;?>" title="<?php echo glob_quoteStr($this->name);?>"><?php echo $this->name;?></a></h2></div>
+ <div class="ps_item_img"><span class="r" r="<?php echo $url;?>"><img width="80" src="<?php echo $pic;?>" onload="resizeme($(this));"></span></div>
+</div>

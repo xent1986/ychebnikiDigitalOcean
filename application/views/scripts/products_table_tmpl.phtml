@@ -1,0 +1,35 @@
+<div class="products_table">
+  <?php $i=0; $ar=array(); foreach($this->products as $val):?>
+  <?php if ($i==0) echo "<div class=\"products_table_row\">";?>
+  <div class="prods_item">
+  <?php $url=$this->url(array('controller'=>'products','action'=>'getdetails','item'=>$val['translit']),null,true);?>
+  <?php $pic = ($val['picture']==''?'/images/nopic.png':$val['picture']);?>
+     <div class="prod_info">
+     <div class="prod_name"><a href="<?php echo $url;?>" title="<?php echo glob_quoteStr($val['name']);?>"><?php echo $val['name']?></a></div>
+      <div class="prod_img">
+          <span class="r" r="<?php echo $url;?>"><img width="120" onload="resizeme($(this));" alt="<?php echo glob_quoteStr($val['name']);?>" src="<?php echo $pic;?>"></span>
+      </div>
+      <div class="prod_details">
+          <?php echo glob_productInfoFormat2("author", $val['author']);?>
+          <?php echo glob_productInfoFormat2("producer", $val['producer']);?>
+          <?php echo glob_productInfoFormat2("pages", $val['pages'],"стр.");?>
+          <?php echo glob_productInfoFormat2("year", $val['year'], "г.");?>
+      </div>
+     </div>
+     <div class="prod_price_c">
+      <div class="prod_price2"><?php echo $val['price']." руб.";?></div>
+      <div class="prod_btns">
+        <div class="btnBuy_d"><button class="btnBuy" onclick="<?php echo 'buyFromCat('.($val['link_ID']==0?$val['id']:$val['link_ID']).',$(this))';?>">В корзину</button></div>
+        <input type="hidden" class="holdprodid" value="<?php echo $val['id'];?>">
+        <input type="hidden" class="linkid" value="<?php echo ($val['link_ID']==0?$val['id']:$val['link_ID']);?>">
+      </div>
+     </div>
+  </div>
+  <?php  $i++; if ($i==4){$i=0; echo "</div>";}?>
+  <?php endforeach;?>
+ <script>
+  checkCart();
+ </script>
+    <iframe name="cartdetailframe" id="cartdetailframe" frameborder="no" width="0" height="0" src="<?php echo DOMAIN_PATH.'/application/views/scripts/cartFrame.html';?>">
+  </iframe>
+</div>

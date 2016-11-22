@@ -1,0 +1,3 @@
+<li class="<?php echo ($this->issel?'main_menu_selected '.$this->key.'_selected':'');?>">
+ <a class="<?php echo 'l_'.$this->key;?>" href="<?php echo $this->url(array('controller'=>'categories','action'=>'catlist','section'=>$this->key),null,true);?>" title="<?php echo $this->name;?>"><?php echo $this->name;?></a>
+</li>

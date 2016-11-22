@@ -1,0 +1,110 @@
+<?php $this->headMeta()->setName('description',"Купить ".$this->details['name']." с доставкой по Москве и России по привлекательной цене в интернет-магазине ychebniki.ru. Описание и отзывы о товаре: ".$this->details['name']."(код товара:".$this->details['id'].")");?>
+<div class="product_detail">
+<?php
+ $pp = array('cat'=>$this->cat,'section'=>$this->section,'item'=>$this->item,'itemname'=>$this->itemname);
+ echo $this->action('categorylegend','categories',null,$pp);
+?>
+<?php $this->headTitle($this->details['name']." - купить ".$this->details['name']." (код товара: ".$this->details['id']."),описание,цена,отзывы"); $this->headTitle('Купить с доставкой по Москве и России');?>
+ <div class="product_detail_container" itemscope itemtype="http://data-vocabulary.org/Product">
+  <article>
+  <div class="pd_product_title"><h1 id="goodname" itemprop="name"><?php echo glob_quoteStr($this->details['name']);?></h1></div>
+  <div class="product_detail_left left">
+   <section>
+   <div class="pd_common">
+   <?php $pic = ($this->details['picture']==''?'/images/nopic.png':$this->details['picture']);?>
+    <div class="pd_img">
+     <img itemprop="image" width="200" src="<?php echo $pic;?>" alt="<?php echo glob_quoteStr($this->details['name']);?>" vspace="2" hspace="2">
+    </div>
+    <div class="pd_details" itemscope itemtype="http://data-vocabulary.org/Offer" itemprop="offerDetails">
+      <div class="pd_buy">
+       <meta content="RUB" itemprop="currency">
+        <div class="pd_price">
+            <span class="pd_price_title">Цена:</span>
+            <span class="pd_buy_price" id="buyprice" itemprop="price"><?php echo $this->details['price'].' руб.';?></span>
+        </div>
+        <script>
+         updateGoodPrice(<?php echo ($this->details['link_ID']==0?$this->details['id']:$this->details['link_ID']);?>,<?php echo $this->details['price'];?>,<?php echo $this->details['id']?>);
+        </script>
+        <div class="pd_buy_form">
+         <FORM action="http://p.my-shop.ru/order" id="buyForm" method="POST">
+          <input type="hidden" name="action" value="cartAddItem">
+          <input type="hidden" name="partner" value="3741_3">
+          <input id="myitem" name="item" type="hidden" value="<?php echo ($this->details['link_ID']==0?$this->details['id']:$this->details['link_ID']);?>">
+          <input id="linkitem" name="link" type="hidden" value="<?php echo $this->details['link_ID'];?>">
+          <input id="itemcnt" type="hidden" name="quantity" value="1">
+          <div class="pd_cnt">
+              <span>Количество:</span>
+           <div class="pd_cnt_all">
+             <div class="pd_cnt_item" id="cntdown"><a class="pd_cnt_spinner"> – </a></div>
+             <div class="pd_cnt_num" id="cntnum">1</div>
+             <div class="pd_cnt_item" id="cntup"><a class="pd_cnt_spinner">+</a></div>
+           </div>
+          </div>
+          <div class="pd_but_btn"><div id="btApplyDiv"><input type="submit" id="btApply" value="В корзину"></div><div class="pd_hold"></div></div>
+         </FORM>
+        </div>
+       </div> 
+       <?php echo glob_productDetailInfoFormat('ID товара: ',$this->details['id']);?>
+       <?php echo glob_productDetailInfoFormat('Автор: ',$this->details['author']);?>
+       <?php echo glob_productDetailInfoFormat(($this->details['book']=='Y'?'Издательство:':'Производитель:'),$this->details['producer'],"brand");?>
+       <?php echo glob_productDetailInfoFormat('Серия: ',$this->details['series']);?>
+       <?php echo glob_productDetailInfoFormat('Год: ',$this->details['year']);?>
+       <?php echo glob_productDetailInfoFormat('',$this->details['cover']);?>
+       <?php echo glob_productDetailInfoFormat('Страниц: ',$this->details['pages']);?>
+       <?php echo glob_productDetailInfoFormat('ISBN: ',glob_addSpaces($this->details['ISBN']));?>
+       <div class="pd_exist_info">
+        <div class="pd_exist">
+         <div class="pd_exist_title left">Наличие:</div>
+         <div class="pd_exist_img left" id="sAvail"><img src="/images/loading5.gif"></div>
+         <script>
+          checkGoodExist(<?php echo ($this->details['link_ID']==0?$this->details['id']:$this->details['link_ID']);?>);
+         </script>
+         <div class="clear"></div>
+        </div>
+        <div class="pd_delivery_info">
+          <div class="pd_di_title">Ориентировочная дата отгрузки:</div>
+          <div class="pd_di_info"></div>
+        </div>
+       </div>    
+    </div>
+   </div>
+   </section>
+   <noindex>
+   <div class="social_share">
+    <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+    <div class="yashare-auto-init" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj"></div>
+   </div>
+   </noindex>    
+   <div class="product_comments" id="commentsblock">
+     <div class="pc_comments">Отзывы</div>
+    <script> getCommentForm(<?php echo $this->details['id']?>);</script>
+    <script> getComments(<?php echo $this->details['id']?>);</script>
+   </div>
+  </div>
+  <div class="product_detail_right right">
+   <section>
+   <div class="product_entrance">
+    <div id="entShort" class="product_entrance_content"><?= $this->details['name'].($this->details['book']=='Y'?' - '.$this->details['author']:'');?>...<span id="showFullEntrance">отобразить</span></div>
+    <div id="entFull" class="product_entrance_content"><strong><?= $this->details['name'].($this->details['book']=='Y'?' - '.$this->details['author']:'');?></strong><?= $this->entrance;?><span id="showShortEntrance">скрыть</span></div>
+   </div>
+   </section>
+  <?php if ($this->details['description']!==''):?>
+   <section>
+   <div class="product_desc">
+    <div  itemprop="description" id="descFull" class="product_desc_content"><?php echo $this->details['description'].'<a id="showShortDesc">кратко</a>';?></div>
+    <div  itemprop="description" id="descShort" class="product_desc_content"><?php echo substr($this->details['description'],0,DESC_LEN).(strlen($this->details['description'])>DESC_LEN?'...<a id="showFullDesc"> читать полностью</a>':'');?></div>
+   </div>
+   </section>
+   <?php endif;?>
+    <div class="google_ad" style="margin-bottom:10px;">
+        <?php echo $this->adsense;?>
+    </div>
+   <?php if (count($this->similar)>0) echo $this->partial("similarBlockTpl.phtml",array('title'=>'Похожие товары','similar'=>$this->similar));?>
+  </div>
+  <div class="clear"></div>
+  </article>
+  <iframe name="cartdetailframe" id="cartdetailframe" frameborder="no" width="0" height="0" src="<?php echo DOMAIN_PATH.'/application/views/scripts/cartFrame.html';?>">
+  </iframe>
+  <?php if (count($this->watched)>0) echo $this->partial("watchedBlockTpl.phtml",array('title'=>'Вы уже смотрели товар:','watched'=>$this->watched));?>
+ </div>
+</div>

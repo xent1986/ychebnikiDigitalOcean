@@ -1,0 +1,45 @@
+<?php $this->setEncoding ('Windows-1251');?>
+<?php echo $this->partial('header.phtml');?>
+    <body>
+<div id="vk_api_transport"></div>
+ <script type="text/javascript">
+  window.vkAsyncInit = function() {
+    VK.init({
+      apiId: 3690264
+    });
+    VK.Widgets.Group("vk_groups", {mode: 0, width: "160", height: "290"}, 31675839);
+  };
+
+  setTimeout(function() {
+    var el = document.createElement("script");
+    el.type = "text/javascript";
+    el.src = "http://vk.com/js/api/openapi.js?96";
+    el.async = true;
+    document.getElementById("vk_api_transport").appendChild(el);
+  }, 1000);
+</script>
+    <script>var domain='<?=DOMAIN_PATH;?>/';</script>
+        <div id="scrollUp">
+         <div class="upTriangle"><div id="triangleDiv"></div></div>
+         <div class="upText">¬верх</div>
+        </div>
+        <div id="content" class="main">
+        <header>
+        <div id="top" class="top">
+          <?= $this->partial('top.phtml');?>
+          <div class="clear"></div>
+         </div>
+        </header>
+         <div class="general">
+          <?= $this->partial('left.phtml');?>
+          <div class="right_column left">
+           <div class="content">
+            <?= $this->layout()->content;?>
+           </div>
+          </div>
+          <div class="clear"></div>
+         </div>
+          <?= $this->partial('bottom.phtml');?>
+        </div>
+    </body>
+</html>

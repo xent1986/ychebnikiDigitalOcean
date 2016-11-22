@@ -1,0 +1,7 @@
+<?php if (count($this->comments)>0):?>
+<ul class="comments_list" id="commentsul">
+ <?php echo $this->partialLoop("commentsloop.phtml",$this->comments);?>
+</ul>
+<?php else:?>
+<div class="nocomments" id="nocomments">Пока нет отзывов. Ваш отзыв может стать первым.</div>
+<?php endif;?>

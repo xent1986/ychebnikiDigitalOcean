@@ -1,0 +1,10 @@
+<li class="comment_item">
+ <div class="ci_up">
+  <div class="ci_up_user left"><?php echo glob_checkOutputText($this->user);?></div>
+  <div class="ci_up_dt left"><?php $dt = date_parse($this->dt); echo date('d.m.Y. H:i:s',mktime($dt['hour'],$dt['minute'],$dt['second'],$dt['month'],$dt['day'],$dt['year']));?></div>
+  <div class="clear"></div>
+ </div>
+ <div class="ci_text">
+  <?php echo glob_checkOutputText($this->comment);?>
+ </div>
+</li>

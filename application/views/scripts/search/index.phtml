@@ -1,0 +1,8 @@
+<FORM method="GET" action="<?php echo $this->url(array('controller'=>'search','action'=>'beginsearch'),null,true);?>">
+ <div class="search_full">
+    <div class="search_edit"><input type="text" name="search" class="ac_input" id="edSearch" autocomplete="off" size="40" value="<?php echo $this->search_text;?>"></div>
+    <div class="search_btn"><input type="submit" name="searchbtn" value="" class="ac_btn"></div>
+ </div>
+    
+ <input type="hidden" name="extended" value="0">
+</FORM>

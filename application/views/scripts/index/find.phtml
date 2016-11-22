@@ -1,0 +1,9 @@
+<div id="find_result">
+<ul>
+	<?php foreach($this->relevant as $key =>$val): ?>
+	<li>
+		<a href="<?php echo $this->url(array('controller'=>'index','action'=>'show','id'=>$key));?>"><?php echo $val;?></a>
+	</li>
+	<?php endforeach;?>
+</ul>	
+</div>

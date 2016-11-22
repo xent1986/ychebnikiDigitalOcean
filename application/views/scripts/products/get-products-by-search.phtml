@@ -1,0 +1,25 @@
+<?php $this->headMeta()->setName('description','Результаты поиска в интернет-магазине учебников и учебных принадлежностей Учебники.ру. Огромный выбор учебников,канцтоваров,аксессуаров для учебы.');?>
+<div class="products_all">
+<div class="products_all_caption">
+ <div class="pa_caption_name left"><h1>Результаты поиска</h1></div>
+ <div class="pa_caption_itemscount right">Товаров найдено: <?php echo $this->pager->getPages()->totalItemCount;?></div>
+ <div class="pa_caption_pages right">Страница: <?php echo $this->pager->getPages()->current;?> из <?php echo $this->pager->getPages()->pageCount;?></div>
+ <div class="clear"></div>
+</div>
+<?php $this->headTitle('Результаты поиска');?>
+<?php
+ $params = array('sort'=>$this->sort,'perpage'=>$this->perpage,'mode'=>'search','section'=>'search');
+ echo $this->partial("sorts_toolbar.phtml",$params);
+?>
+    <div class="google_ad">
+        <?php echo $this->adsense;?>
+    </div>
+<?php
+ $params = array('products'=>$this->products);
+ echo $this->partial("products_table_tmpl.phtml",$params);
+?>
+<?php
+ $params = array('pager'=>$this->pager,'section'=>'search');
+ echo $this->partial("paginator_tmpl.phtml",$params);
+?>
+</div>

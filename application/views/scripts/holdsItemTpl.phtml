@@ -1,0 +1,21 @@
+<div class="holds_tr" onclick="change_checkbox($(this));" onmouseenter="holdsdelVisible(true,$(this));" onmouseleave="holdsdelVisible(false,$(this));">
+ <div class="holds_td_check left"><input onclick="change_me($(this));" type="checkbox" id="<?php echo 'ch_'.($this->link_ID==0?$this->id:$this->link_ID);?>" name="<?php echo 'ch['.($this->link_ID==0?$this->id:$this->link_ID).']';?>"></div>
+ <div class="holds_td_img left"><img width="80" onload="resizeme($(this));" alt="<?php echo glob_quoteStr($this->name);?>" src="<?php echo ($this->picture==''?'/images/nopic.png':$this->picture);?>"></div>
+ <div class="holds_td_desc left">
+  <div class="holds_td_title"><a href="<?php echo DOMAIN_PATH.'/products/getdetails/item/'.$this->translit;?>"><?php echo $this->name;?></a></div>
+  <div class="holds_td_description"><?php echo (strlen(trim($this->description))>0?substr($this->description,0,HOLDS_DESC_LEN):'Описания товара нет').(strlen($this->description)>HOLDS_DESC_LEN?'...':'');?></div>
+ </div>
+ <div class="holds_td_price left">
+  <div class="holds_price"><?php echo $this->price." руб.";?></div>
+  <div class="holds_btn_buy">
+   <FORM id="buyForm" method="POST" action="http://p.my-shop.ru/order">
+    <input type="hidden" value="1" name="quantity" id="itemcnt">
+    <input type="hidden" value="<?php echo ($this->link_ID==0?$this->id:$this->link_ID);?>" name="item" id="myitem">
+    <input type="hidden" value="<?php echo PARTNER;?>" name="partner">
+    <input type="hidden" value="cartAddItem" name="action">
+    <input type="submit" id="btApplyHold" value="Купить">
+   </FORM>
+  </div>
+ </div>
+ <div class="clear"></div>
+</div>

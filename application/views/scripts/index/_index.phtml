@@ -1,0 +1,72 @@
+<div class="find_field">
+ <FORM method="POST" action="<?php echo $this->url(array('controller'=>'index','action'=>'find'));?>">
+  <input type="text" name="search" size="50">
+  <input type="submit" name="actsearch" value="Искать">
+ </FORM>
+ </div>
+
+
+<div id="top" class="top">
+ <div id="top_left" class="top_left left">
+  <div id="top_left_top" class="top_left_top">
+   <ul>
+    <li>H</li>
+    <li>M</li>
+    <li>M</li>
+    <li>И</li>
+   </ul>
+  </div>
+  <div id="top_left_bottom" class="top_left_bottom">
+   <div class="caption">бесплатный звонок по РФ</div>
+   <div class="contact_number">8-800-100-53-38</div>
+   <div class="caption_sm"><a href="<?php echo $this->url(array('controller'=>'index','action'=>'contacts'));?>">Контактная информация</a></div>
+  </div>
+ </div>
+ <div id="top_center" class="top_center  left">
+  <div id="top_center_top" class="top_center_top">
+   <div class="logo left">
+    <div id="main_logo"><a id="logo" href="http://ychebniki.ru" rel="nofollow" title="Учебники - интернет-магазин учебников и учебных принадлежностей"><img src="/images/logo.png" alt="Интернет-магазин учебных принадлежностей Учебники"></a></div>
+    <strong>Магазин учебных принадлежностей</strong>
+   </div>
+   <div class="logo_cart left">
+    <a href="<?php echo $this->url(array('controller'=>'index','action'=>'cart'));?>" title="Корзина покупателя">
+     <div class="caption">Корзина</div>
+     <div class="cart_logo"><img alt="корзина покупателя" src="/images/cart.png"></div>
+     <script type="text/javascript">
+          var myShopPartnerId = '3741_3';
+          var myShopExternalCSS = 'http://ychebniki.ru/styles.css';
+          document.write('&lt;div&gt;&lt;iframe id="myShopOnelineCartIframe" src="http://p.my-shop.ru/order?action=embedCart&amp;partner='+myShopPartnerId+'&amp;'+location.search.substring(1)+(myShopExternalCSS?'&amp;extcss='+encodeURIComponent(myShopExternalCSS):'')+'&amp;nocache='+Math.ceil(Math.random()*1000000)+'" height="30" width="200" style="margin: 0; padding: 0; border: 0;" scrolling="no" frameborder="0"&gt;&lt;/iframe&gt;&lt;/div&gt;');
+     </script>
+    </a>
+   </div>
+   <div class="clear"></div>
+  </div>
+  <div id="top_center_bottom" class="top_center_bottom">
+   <ul>
+    <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'delivery'));?>">Доставка</a></li>
+    <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'payment'));?>">Оплата</a></li>
+    <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'discount'));?>">Скидки</a></li>
+    <li><a href="<?php echo $this->url(array('controller'=>'index','action'=>'zakaznik'));?>">Заказник</a></li>
+   </ul>
+  </div>
+ </div>
+ <div id="top_right" class="top_right  left">
+  <div class="top_right_top">
+   <FORM method="POST" action="<?php echo $this->url(array('controller'=>'index','action'=>'search'));?>">
+    <div class="search_edit left"><input type="text" size="40"></div>
+    <div class="search_btn left"><input type="submit" value="Найти"></div>
+   </FORM>
+   <div class="clear"></div>
+  </div>
+  <div class="top_right_bottom">
+   <ul>
+    <li><a href="http://twitter.com/ychebniki" title="Мы в Твиттере"><img src="images/twbtn.png"></a></li>
+    <li><a href="http://vk.com/y4ebniki" title="Мы в Вконтакте"><img src="images/vkbtn.jpg"></a></li>
+    <li><a href="http://www.facebook.com/groups/ychebniki/" title="Мы на Facebook"><img src="images/fcbtn.png"></a></li>
+   </ul>
+  </div>
+ </div>
+ <div class="clear"></div>
+</div>
+
+

@@ -1,0 +1,26 @@
+    <?php if (($this->pageCount)&&($this->pageCount>1)): ?>
+    <div class="paginationControl">
+    <!-- Ссылка на предыдущую страницу -->
+    <?php if (isset($this->previous)): ?>
+      <a title="Перейти на предыдущую страницу" class="pager_b" href="<?php echo glob_makeGetUrl($this->url(array('page' => $this->previous))); ?>">
+        Пред.
+      </a>
+    <?php endif; ?>
+
+    <!-- Нумерованные ссылки на страницы -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+      <?php if ($page != $this->current): ?>
+        <a title="<?php echo 'Перейти на страницу '.$page;?>" class="pager_item" href="<?php echo glob_makeGetUrl($this->url(array('page' => $page))); ?>"><?php echo $page; ?></a>
+      <?php else: ?>
+        <?php echo "<span class=\"".$this->options['mysection']."_pager_selected\">".$page."</span>"; ?>
+      <?php endif; ?>
+    <?php endforeach; ?>
+
+    <!-- Ссылка на следующую страницу -->
+    <?php if (isset($this->next)): ?>
+      <a title="Перейти на следующую страницу" class="pager_f" href="<?php echo glob_makeGetUrl($this->url(array('page' => $this->next))); ?>">
+        След.
+      </a>
+    <?php endif; ?>
+    </div>
+    <?php endif; ?>

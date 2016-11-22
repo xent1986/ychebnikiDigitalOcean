@@ -1,0 +1,65 @@
+<div class="z_output left">
+ <div class="zo_title">Узнать результат</div>
+ <div class="zo_description">Введите номер зявки, полученный при ее формировании</div>
+ <div class="zo_res">
+ <FORM id="zakaznikResForm" action="<?php echo DOMAIN_PATH.'/zakaznik/index';?>" method="POST">
+  <TABLE class="zo_table" border="0" cellspacing="2" cellpadding="2">
+   <tr>
+    <td class="zot_caption">Номер заявки:</td>
+    <td class="zot_value"><input type="text" name="stext" id="stext" class="zot_text"></td>
+    <td class="zot_btn"><input type="submit" id="zSearch" name="zSearch" value="Искать"></td>
+   </tr>
+  </TABLE>
+ </FORM>
+ </div>
+ <?php if ($this->notfound):?>
+ <div class="zo_notfound">Заявка не найдена</div>
+ <?php endif;?>
+ <?php if ($this->ordnum!=0):?>
+   <div class="zo_result">
+    <div class="zo_result_row">
+     <div class="zor_title left">Зявка номер:</div>
+     <div class="zor_value left"><?php echo $this->ordnum;?></div>
+     <div class="clear"></div>
+    </div>
+    <div class="zo_result_row">
+     <div class="zor_title left">Описание:</div>
+     <div class="zor_value left"><?php echo glob_checkOutputText($this->orddesc);?></div>
+     <div class="clear"></div>
+    </div>
+    <div class="zo_result_row">
+     <?php if ($this->totalcnt<=0):?>
+     <div class="zor_noresult">К сожалению подходящих товаров, пока, не найдено.</div>
+     <?php else:?>
+     <div class="zor_table">
+      <?php if(count($this->main)>0):?>
+      <div class="zor_main_title">Найденные товары по вашему запросу:</div>
+      <?php $i=1; foreach($this->main as $key => $val):?>
+       <div class="zor_main_row">
+        <div class="zor_col1 left"><?php echo $i.'.';?></div>
+        <div class="zor_col2 left"><a href="<?php echo $this->url(array('controller'=>'products','action'=>'getdetails','item'=>$val['translit']),null,true);?>" title="<?php echo glob_quoteStr($val['name']);?>"><?php echo glob_quoteStr($val['name']);?></a></div>
+        <div class="zor_col3 right"><?php echo $val['price'];?> руб.</div>
+        <div class="clear"></div>
+        <?php $i++;?>
+       </div>
+      <?php endforeach;?>
+      <?php endif;?>
+      <?php if(count($this->alternate)>0):?>
+      <div class="zor_main_title">Альтернативные варианты:</div>
+      <?php $i=1; foreach($this->alternate as $key => $val):?>
+       <div class="zor_main_row">
+        <div class="zor_col1 left"><?php echo $i.'.';?></div>
+        <div class="zor_col2 left"><a href="<?php echo $this->url(array('controller'=>'products','action'=>'getdetails','item'=>$val['translit']),null,true);?>"><?php echo $val['name'];?></a></div>
+        <div class="zor_col3 right"><?php echo $val['price'];?> руб.</div>
+        <div class="clear"></div>
+        <?php $i++;?>
+       </div>
+      <?php endforeach;?>
+      <?php endif;?>
+
+     </div>
+     <?php endif;?>
+    </div>
+   </div>
+ <?php endif;?>
+</div>

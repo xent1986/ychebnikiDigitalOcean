@@ -1,0 +1,30 @@
+<?php
+header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+header("Cache-Control: no-cache, must-revalidate");
+header("Cache-Control: post-check=0,pre-check=0", false);
+header("Cache-Control: max-age=0", false);
+header("Pragma: no-cache");
+?>
+<?php $this->headMeta()->setName('description','Отложенные товары. Просмотр отложенных товаров.');?>
+<?php $this->headTitle('Отложенные товары');?>
+<div class="holds">
+ <div class="holds_title"><h1>Отложенные</h1></div>
+ <?php if ($this->cnt>0):?>
+  <div class="holds_table">
+    <?php echo $this->partialLoop('holdsItemTpl.phtml',$this->holds);?>
+    <div class="h_check_links">
+     <div class="h_check_all left">Отметить все</div>
+     <div class="left">/</div>
+     <div class="h_clear_all left">Снять выделение</div>
+     <input type="button" id="btDelChecked" value="Удалить отмеченные" class="right">
+     <input type="button" id="btBuyChecked" value="Купить отмеченные" class="right">
+     <div class="clear"></div>
+    </div>
+  </div>
+  <iframe name="cartframe" id="cartframe" frameborder="no" width="0" height="0" src="<?php echo DOMAIN_PATH.'/application/views/scripts/cartFrame.html';?>">
+  </iframe>
+ <?php else:?>
+  <div class="h_no_items">Вы еще не откладывали товары.</div>
+ <?php endif;?>
+</div>

@@ -1,0 +1,18 @@
+<div class="cats_list">
+ <div class="cats_main_menu">
+  <ul>
+   <?= $this->partialLoop('mainMenuTpl.phtml',$this->menuitems);?>
+  </ul>
+ </div>
+ <?php
+  if ($this->subcats!=='')
+  {
+   $this->layout()->base=$this->basesection;
+   echo "<div class=\"subcats_menu ".$this->basesection."_subcats\">
+          <ul class=\"subcat_list\">
+          ".$this->partialLoop('subcatsMenuTpl.phtml',$this->subcats)."
+          </ul>
+         </div>";
+  }
+ ?>
+</div>

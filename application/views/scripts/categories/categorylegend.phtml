@@ -1,0 +1,16 @@
+<div class="legend">
+<?php
+ if (count($this->cats)>0)
+ {
+  $c_ar = array_reverse($this->cats);
+  $this->layout()->section=$this->section;
+  $this->layout()->firstelement=1;
+  echo "<div class=\"legend_items\">
+         ".$this->partialLoop('legendTpl.phtml',$c_ar).
+         ($this->item?"<div class=\"legend_space left\"></div><div class=\"legend_item left\"><span class=\"r\" t=\"".glob_quoteStr($this->itemname)."\" r='".$this->url(array('controller'=>'products','action'=>'getdetails','item'=>$this->item))."'>".$this->itemname."</span></div>":"")."
+         <div class=\"legend_finish_item left\"></div>
+         <div class=\"clear\"></div>
+        </div>";
+ }
+?>
+</div>

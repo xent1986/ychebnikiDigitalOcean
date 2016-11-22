@@ -1,0 +1,14 @@
+<div class="product_similar">
+    <div class="ps_title"><?php echo $this->title;?></div>
+    <div class="ps_total">
+    <a id="moveSimilarLeftBtn"><div class="ps_btn_left left"></div></a>
+    <div class="ps_container left">
+     <div class="ps_items" id="psitems" style="width:<?php echo SIMILAR_PROD_NUM*130;?>px">
+      <?php echo $this->partialLoop('similarProdsTpl.phtml',$this->similar)?>
+      <div class="clear"></div>
+     </div>
+    </div>
+    <a id="moveSimilarRightBtn"><div class="ps_btn_right left"></div></a>
+    <div class="clear"></div>
+    </div>
+   </div>

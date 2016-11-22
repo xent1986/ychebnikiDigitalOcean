@@ -1,0 +1,13 @@
+body{
+        background-color:white;
+        font-family:Verdana;
+}
+
+div#myShopOneLineCartDiv{
+ text-align:center;
+ font-size:12px;
+ font-weight:bold;
+ width:150px;
+ margin-left:20px;
+ color:#2f3030;
+}

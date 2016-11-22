@@ -1,0 +1,24 @@
+body {
+        background-color: white;
+        font-family: MS Sans Serif;
+}
+
+.left{
+ float:left;
+}
+
+.clear{
+ clear:both;
+}
+
+.menuitem{
+ margin-right:10px;
+}
+
+.at_row_name{
+ width:500px;
+}
+
+.at_row_desc{
+ width:500px;
+}

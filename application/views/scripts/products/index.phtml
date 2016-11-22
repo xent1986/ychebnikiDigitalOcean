@@ -1,0 +1,36 @@
+<?php $this->headMeta()->setName('description',DESC);?>
+<?php foreach($this->prods as $val):?>
+ <div class="prods_part">
+  <div class="prods_part_caption"><h1 style="color:<?php echo $val['color'];?>"><?php echo $val['part'];?></h1></div>
+  <div class="prods_items_list">
+   <?php foreach($val['prods'] as $val2):?>
+    <div class="prods_item">
+     <div class="prod_info">
+     <?php $url = $this->url(array('controller'=>'products','action'=>'getdetails','item'=>$val2['translit']),null,true);?>
+     <?php $pic = ($val2['picture']==''?'/images/nopic.png':$val2['picture']);?>
+     <div class="prod_name"><a href="<?php echo $url;?>" title="<?php echo glob_quoteStr($val2['name']);?>"><?php echo $val2['name']?></a></div>
+      <div class="prod_img">
+          <span class="r" r="<?php echo $url;?>"><img width="120" onload="resizeme($(this));" alt="<?php echo glob_quoteStr($val2['name']);?>" src="<?php echo $pic;?>"></span>
+      </div>
+      <div class="prod_details">
+          <?php echo glob_productInfoFormat2("author", $val2['author']);?>
+          <?php echo glob_productInfoFormat2("producer", $val2['producer']);?>
+          <?php echo glob_productInfoFormat2("pages", $val2['pages'],"стр.");?>
+          <?php echo glob_productInfoFormat2("year", $val2['year'], "г.");?>
+      </div>
+     </div>
+     <div class="prod_price_c">
+      <div class="prod_price2"><?php echo $val2['price']." руб.";?></div>
+      <div class="prod_btns">
+        <div class="btnBuy_d"><button class="btnBuy" onclick="<?php echo 'buyFromCat('.($val2['link_ID']==0?$val2['id']:$val2['link_ID']).',$(this))';?>">В корзину</button></div>
+        <input type="hidden" class="holdprodid" value="<?php echo $val2['id'];?>">
+        <input type="hidden" class="linkid" value="<?php echo ($val['link_ID']==0?$val['id']:$val['link_ID']);?>">
+      </div>
+     </div>
+    </div>
+   <?php endforeach;?>
+  </div>
+  <iframe name="cartdetailframe" id="cartdetailframe" frameborder="no" width="0" height="0" src="<?php echo DOMAIN_PATH.'/application/views/scripts/cartFrame.html';?>">
+  </iframe>
+ </div>
+<?php endforeach;?>

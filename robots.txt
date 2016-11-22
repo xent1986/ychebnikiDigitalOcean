@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Sitemap: http://ychebniki.ru/sitemap1.xml
+Sitemap: http://ychebniki.ru/sitemap2.xml
+Disallow: /cart*
+Disallow: /info/payment*
+Disallow: /info/discount*
+Disallow: /info/delivery*
+Host:ychebniki.ru
+#Begin Attracta SEO Tools Sitemap. Do not remove
+sitemap: http://cdn.attracta.com/sitemap/2514789.xml.gz
+#End Attracta SEO Tools Sitemap. Do not remove
+#Begin Attracta SEO Tools Sitemap. Do not remove
+sitemap: http://cdn.attracta.com/sitemap/2514782.xml.gz
+#End Attracta SEO Tools Sitemap. Do not remove

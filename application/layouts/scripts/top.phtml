@@ -1,0 +1,81 @@
+ <div id="top_left" class="top_left left">
+  <div id="top_left_top" class="top_left_top">
+   <ul>
+    <li><noindex><a rel="nofollow" title="Интернет-магазин Учебники" id="homelink" href="<?php echo DOMAIN_PATH;?>"><div  class="tools_home">&nbsp</div></a></noindex></li>
+    <li><div  class="tools_map"></div></li>
+    <li id="mailTool"><script> $("#mailTool").append('<a title="Написать нам" href="mailto:info@ychebniki.ru"><div class="tools_mail">&nbsp</div></a>'); </script></li>
+    <li><a title="Добавить в избранное"><div id="toolFavorite" class="tools_favorite">&nbsp</div></a></li>
+   </ul>
+  </div>
+  <div id="top_left_bottom" class="top_left_bottom">
+  <?php $url = $this->url(array('controller'=>'info','action'=>'contacts'),null,true);?>
+   <div class="free_call_caption">бесплатный звонок по РФ</div>
+   <div class="contact_number">8-800-100-53-38</div>
+   <div class="caption_sm"><a href="<?php echo $url;?>">контактная информация</a></div>
+  </div>
+ </div>
+ <div id="top_center" class="top_center  left">
+  <div id="top_center_top" class="top_center_top">
+   <div class="logo">
+    <div id="main_logo"><a id="logo" href="http://ychebniki.ru" rel="nofollow" title="Учебники - интернет-магазин учебников и учебных принадлежностей"><img src="/images/logo3.png" alt="Интернет-магазин учебных принадлежностей Учебники" height="70"></a></div>
+    <strong>интернет - магазин учебников </strong>
+   </div>
+  </div>
+  
+  <?php
+   $request = Zend_Controller_Front::getInstance()->getRequest();
+   $action = $request->getActionName(); $controller=$request->getControllerName();
+   $class="";
+   switch ($controller)
+   {
+    case 'info': $class=$action; break;
+    case 'zakaznik': $class=$controller; break;
+   }
+
+   ?>
+ </div>
+   <div class="logo_cart left">
+    <a href="<?php echo $this->url(array('controller'=>'cart'),null,true);?>" title="Корзина покупателя">
+     <div class="cart_logo"><img height="70" alt="корзина покупателя" src="/images/cart3.png"></div>
+     <div class="cart_myshop">
+          <script type="text/javascript">
+          var myShopPartnerId = '<?php echo PARTNER;?>';
+          var myShopExternalCSS = '<?php echo DOMAIN_PATH.'/styles/styles_cart.css';?>';
+          document.write('<div><iframe id="myShopOnelineCartIframe" src="http://p.my-shop.ru/order?action=embedCart&partner='+myShopPartnerId+'&'+location.search.substring(1)+(myShopExternalCSS?'&extcss='+encodeURIComponent(myShopExternalCSS):'')+'&nocache='+Math.ceil(Math.random()*1000000)+'" height="45" width="200" style="margin: 0; padding: 0; border: 0;" scrolling="no" frameborder="0"></iframe></div>');
+          </script>
+     </div>
+    </a>
+   </div>
+ <div id="top_right" class="top_right  left">
+  <div class="top_right_top">
+   <?php echo $this->action('index','search');?>
+   <div class="clear"></div>
+  </div>
+  <div class="top_right_bottom">
+   <ul style="display:none">
+    <li><a href="http://twitter.com/ychebniki" title="Мы в Твиттере"><img src="/images/twbtn.png"></a></li>
+    <li><a href="http://vk.com/y4ebniki" title="Мы в Вконтакте"><img src="/images/vkbtn.jpg"></a></li>
+    <li><a href="http://www.facebook.com/groups/ychebniki/" title="Мы на Facebook"><img src="/images/fcbtn.png"></a></li>
+   </ul>
+  </div>
+  <div id="top_center_bottom" class="top_right_bottom">
+   <div class="info_menu_item left">
+       <div class="info_menu_item_image"><img alt="Информация о способах доставки" src="/images/delivery3.png" height="40"></div>
+       <div class="info_menu_item_link"><a title="Информация о способах доставки" href="<?php echo $this->url(array('controller'=>'info','action'=>'delivery'),null,true);?>">Доставка</a></div>
+   </div>
+   <div class="info_menu_item left center">
+       <div class="info_menu_item_image"><img alt="Способы оплаты" src="/images/payment3.png" height="40"></div>
+       <div class="info_menu_item_link"><a title="Информация о способах оплаты" href="<?php echo $this->url(array('controller'=>'info','action'=>'payment'),null,true);?>">Оплата</a></div>
+   </div>      
+   <div class="info_menu_item left">
+       <div class="info_menu_item_image"><img alt="Информация о скидках" src="/images/discont3.png" height="40"></div>
+       <div class="info_menu_item_link"><a title="Информация о скидках" href="<?php echo $this->url(array('controller'=>'info','action'=>'discount'),null,true);?>">Скидки</a></div>
+   </div>    
+   <div class="info_menu_item left">
+       <div class="info_menu_item_image"><img alt="Контактная информация" src="/images/contacts3.png" height="40"></div>
+       <div class="info_menu_item_link"><a title="Контактная информация" href="<?php echo $this->url(array('controller'=>'info','action'=>'contacts'),null,true);?>">Контакты</a></div>
+   </div>
+   <div class="clear"></div>
+  </div>
+    
+ </div>

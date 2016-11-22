@@ -1,0 +1,14 @@
+  <div class="product_watched">
+    <div class="pw_title"><?php echo $this->title;?></div>
+    <div class="pw_total">
+     <a id="moveWatchedLeftBtn"><div class="pw_btn_left left"></div></a>
+     <div class="pw_container left">
+      <div class="pw_items" id="pwitems" style="width:<?php echo WATCHED_PROD_NUM*130;?>px">
+       <?php echo $this->partialLoop('watchedProdsTpl.phtml',$this->watched)?>
+       <div class="clear"></div>
+      </div>
+     </div>
+     <a id="moveWatchedRightBtn"><div class="pw_btn_right right"></div></a>
+     <div class="clear"></div>
+    </div>
+  </div>

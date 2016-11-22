@@ -1,0 +1,28 @@
+<?php $this->headMeta()->setName('description','Помощь в поиске товара по сайту. Заказать учебник.');?>
+<?php $this->headTitle('Заказник');?>
+<?php $this->headTitle('Помощь в поиске товара на сайте');?>
+<div class="zakaznik">
+ <div class="zakaznik_title"><h1>Заказник</h1></div>
+ <div class="z_input left">
+  <div class="zi_title">Подать заявку</div>
+  <div class="zi_desc">Если Вы не смогли найти нужный товар у нас в магазине, Вы можете оставить заявку и наш оператор постарается найти его для Вас. Оставьте максимально точные данные о товаре (наименование, автора, ISBN, год издания, издательство) и свой e-mail. Результаты поиска Вам вышлют по почте.</div>
+  <FORM id="zakaznikForm" action="<?php echo DOMAIN_PATH.'/zakaznik/addzakaz';?>" method="POST">
+   <input type="hidden" name="secret" value="111" id="secret">
+   <TABLE class="zi_table" border="0" cellspacing="2" cellpadding="2">
+    <tr>
+     <td class="zit_caption">E-mail:</td>
+     <td class="zit_value"><input type="text" name="email" id="zemail"></td>
+    </tr>
+    <tr>
+     <td class="zit_caption">Описание:</td>
+     <td class="zit_value"><textarea resize="false" name="descript" id="descript" rows="7" cols="20"></textarea></td>
+    </tr>
+    <tr>
+     <td colspan="2" class="zit_btn"><input type="button" id="zApply" name="zApply" value="Подать заявку"></td>
+    </tr>
+   </TABLE>
+  </FORM>
+ </div>
+ <?php echo $this->action('getorders','zakaznik');?>
+ <div class="clear"></div>
+</div>

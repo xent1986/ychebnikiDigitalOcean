@@ -1,0 +1,22 @@
+<div class="sorts">
+ <div class="cnt_panel left">
+  <?php $url = glob_makeBaseUrl(array('search','porder','extended'));
+   //$url = $this->url(array('controller'=>'categories','action'=>'catlist','section'=>$this->section,'cat'=>$this->category));
+   //if ($this->sort!=='') $burl =$url.'?porder='.$this->sort.'&'; else $burl =$url.'?';
+  ?>
+  <div class="sort_cnt_caption left">Отображать по:</div>
+  <div class="sort_cnt_item left"><?php echo ($this->perpage==20?"<div class=\"".$this->section."_selected_sort\">20</div>":"<a href='".$url."pp=20'>20</a>");?></div>
+  <div class="sort_cnt_item  left"><?php echo ($this->perpage==36?"<div class=\"".$this->section."_selected_sort\">36</div>":"<a class=\"".$this->section."_sort\" href='".$url."pp=36'>36</a>");?></div>
+  <div class="sort_cnt_item  left"><?php echo ($this->perpage==72?"<div class=\"".$this->section."_selected_sort\">72</div>":"<a class=\"".$this->section."_sort\" href='".$url."pp=72'>72</a>");?></div>
+ </div>
+ <div class="sort_panel right">
+  <?php
+   $url = glob_makeBaseUrl(array('search','pp','extended'))
+//   $burl2 =$url.'?pp='.$this->perpage.'&';
+  ?>
+  <div class="sort_price_caption left"><?php echo ($this->mode=='search'?'Сортировка: <b>по соответствию запросу</b>':'Сортировать по цене:');?></div>
+  <div <?php echo ($this->mode=='search'?"style='display:none'":"");?> class="price_sort_up left"><?php echo ($this->sort=='asc'?"<div class=\"".$this->section."_selected_sort\">по возр.</div>":"<a class=\"".$this->section."_sort\" href='".$url."porder=asc'>по возр.</a>");?></div>
+  <div <?php echo ($this->mode=='search'?"style='display:none'":"");?> class="price_sort_down left"><?php echo ($this->sort=='desc'?"<div class=\"".$this->section."_selected_sort\">по убыв.</div>":"<a class=\"".$this->section."_sort\" href='".$url."porder=desc'>по убыв.</a>");?></div>
+ </div>
+ <div class="clear"></div>
+</div>

@@ -1,0 +1,91 @@
+body {
+        background-color: white;
+        padding: 0px;
+        margin-left: 10px;
+        font-family: MS Sans Serif;
+}
+
+.left{
+ float:left;
+}
+
+.right{
+ float:right;
+}
+
+.clear{
+ clear:both;
+}
+
+.bold_text{
+ font-weight:bold;
+}
+
+.date_sections_row{
+ margin-bottom:5px;
+}
+
+.date_sections a{
+  font-size: 14px;
+  color: #836D16;
+  font-family: MS Sans Serif ;
+  font-weight:bold;
+  background:#CFCDC6;
+  border: 1px solid #EDC00A;
+  padding:2px;
+  float:left;
+  margin-right:5px;
+}
+
+.date_sections a:hover{
+  background-color:#5A5A58;
+  color:#EECA3C;
+}
+
+.all_clicks{
+ margin-top:10px;
+ margin-bottom:20px;
+ background-color:#EAFB8B;
+ width:1450px;
+ border:1px solid #727771;
+}
+
+.ipclicks{
+ margin-bottom:20px;
+ background-color:#EAFB8B;
+}
+
+.client_ip{
+ margin-top:2px;
+ margin-left:5px;
+ background-color:#BEC0BE;
+ border:1px solid #727771;
+ width:1430px;
+}
+
+.click_date{
+  width:200px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-top:2px;
+
+}
+
+.click_id{
+ width:100px;
+ margin-right:5px;
+  margin-top:2px;
+}
+
+.click_name{
+ width:500px;
+ margin-right:5px;
+
+  margin-top:2px;
+}
+
+.title{
+ background-color:#9DF291;
+ border: 1px solid #1B9E0A;
+ font-weight:bold;
+}
