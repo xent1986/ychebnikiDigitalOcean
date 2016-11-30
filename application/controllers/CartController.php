@@ -13,7 +13,7 @@ class CartController extends Zend_Controller_Action
     {
         // action body
     }
-
+    
     public function addlogAction()
     {
        if ($this->getRequest()->isGet())

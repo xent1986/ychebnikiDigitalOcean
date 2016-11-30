@@ -24,7 +24,7 @@
       <div class="prod_btns">
         <div class="btnBuy_d"><button class="btnBuy" onclick="<?php echo 'buyFromCat('.($val2['link_ID']==0?$val2['id']:$val2['link_ID']).',$(this))';?>">В корзину</button></div>
         <input type="hidden" class="holdprodid" value="<?php echo $val2['id'];?>">
-        <input type="hidden" class="linkid" value="<?php echo ($val['link_ID']==0?$val['id']:$val['link_ID']);?>">
+        <input type="hidden" class="linkid" value="<?php echo ($val2['link_ID']==0?$val2['id']:$val2['link_ID']);?>">
       </div>
      </div>
     </div>
