@@ -14,7 +14,7 @@ class InfoController extends Zend_Controller_Action
 
  public function deliveryAction()
  {
-  $info = glob_makeCurlResponse('http://my-shop.ru/my/helper_25');
+  $info = glob_makeCurlResponse('https://my-shop.ru/my/helper_25');
 //$info=true;
   if ($info!==false)
   {
@@ -41,7 +41,7 @@ class InfoController extends Zend_Controller_Action
 
  public function paymentAction()
  {
-  $info = glob_makeCurlResponse('http://my-shop.ru/my/helper_26');
+  $info = glob_makeCurlResponse('https://my-shop.ru/my/helper_26');
 //$info=true;
   if ($info!==false)
   {
