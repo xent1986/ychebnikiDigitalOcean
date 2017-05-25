@@ -43,6 +43,7 @@ class InfoController extends Zend_Controller_Action
  {
   $info = glob_makeCurlResponse('https://my-shop.ru/my/helper_26');
 //$info=true;
+  //ddd
   if ($info!==false)
   {
    $url_p = DOMAIN_PATH."/info/delivery";
