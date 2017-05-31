@@ -5,9 +5,29 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
 
  public function getProductsByCat($cats,$start,$limit)
  {
-  $select = $this->select()
+     $select = $this->select()
                            ->from(array('p'=>'ln_product_my'))
                            ->where(" categoryId IN ($cats) AND mycat_id=".MYCAT." AND product_status IN (0,2)");
+   
+  if($limit!=0)
+   $select->limit($limit,$start);
+  $rows = $this->fetchAll($select);
+  if(!$rows)
+  {
+   throw new Exception('There are no cats here');
+  }
+  else
+  {
+   return $rows->toArray();
+  }
+ }
+ 
+ public function getProductsByTopCat($topCat,$start,$limit)
+ {
+     $select = $this->select()
+                           ->from(array('p'=>'ln_product_my'))
+                           ->where(" topCategoryId=$topCat AND mycat_id=".MYCAT." AND product_status IN (0,2)");
+   
   if($limit!=0)
    $select->limit($limit,$start);
   $rows = $this->fetchAll($select);

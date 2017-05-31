@@ -24,14 +24,14 @@ class ProductsController extends Zend_Controller_Action
   global $sec_ar;
   $res = array();
   $db1 = new Application_Model_DbTable_Products();
-  $db2 = new Application_Model_DbTable_Categories();
+  //$db2 = new Application_Model_DbTable_Categories();
   foreach($sec_ar as $val)
   {
-   $cat = $db2->getCategoryById($val['id']);
-   $childs = $cat[0]['children'];
+   //$cat = $db2->getCategoryById($val['id']);
+   //$childs = $cat[0]['children'];
    $w=date('W',time()+TIME_DIFFER);
    $start = ($w==0?1:$w-1)*3+1;
-   $res[] = array('part'=>$val['name'],'prods'=>$db1->getProductsByCat($childs,$start,4),'color'=>$val['color']);
+   $res[] = array('part'=>$val['name'],'prods'=>$db1->getProductsByTopCat($val['id'],$start,4),'color'=>$val['color']);
   }
    return $res;
  }
