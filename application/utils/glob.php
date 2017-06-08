@@ -337,4 +337,12 @@ function glob_getCacheID($ar,$key)
     return md5($str);
 }
 
+function glob_CheckComma($str)
+{
+    $res = $str;
+    if (substr($str,  strlen($str)-1,1)==',')
+            $res = substr($str,0,  strlen($str)-1);
+    return $res;
+}
+
 ?>

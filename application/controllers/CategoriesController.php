@@ -169,7 +169,6 @@ class CategoriesController extends Zend_Controller_Action
   $db = new Application_Model_DbTable_Products();
   $cat = intval($cat);
   $cc = $this->selectExistCat($id);
-
   if (!$cc) {
   throw new Zend_Controller_Action_Exception('Такой категории у нас нет', 404);
   }
@@ -216,6 +215,7 @@ class CategoriesController extends Zend_Controller_Action
     if (count($cat)>0)
     {
      $cat = $cat[0]['children'];
+     $cat = glob_CheckComma($cat);
      $db2 = new Application_Model_DbTable_Products();
      $prods = $db2->cntProductsInChilds($cat);
      if ($prods==0) $res=false;

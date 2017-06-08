@@ -45,6 +45,7 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
  {
   $childs = $params['childs'];
   $order = ($params['order']==''?'name':'price '.$params['order']);
+  $childs = glob_CheckComma($childs);
   $select = $this->select()
                    ->where(" categoryId IN ($childs) AND mycat_id=".MYCAT." AND product_status IN (0,2)")
                    ->order($order);
@@ -110,7 +111,7 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
 
  public function cntProductsInChilds($childs)
  {
-  $select = $this->select()
+     $select = $this->select()
                    ->from($this->_name,array('num'=>'COUNT(id)'))
                    ->where(" categoryId IN ({$childs}) AND mycat_id=".MYCAT);
   $rows = $this->fetchRow($select);
