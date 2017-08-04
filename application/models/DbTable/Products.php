@@ -22,11 +22,13 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
   }
  }
  
- public function getProductsByTopCat($topCat,$start,$limit)
+ public function getNewProductsByCat($cats,$start,$limit)
  {
+     $s = " AND id NOT IN (SELECT DISTINCT productID FROM ln_product_news)";
      $select = $this->select()
                            ->from(array('p'=>'ln_product_my'))
-                           ->where(" topCategoryId=$topCat AND mycat_id=".MYCAT." AND product_status IN (0,2)");
+                           ->where(" categoryId IN ($cats) AND mycat_id=".MYCAT." AND product_status IN (0,2) and new>0".$s)
+                           ->order("new");
    
   if($limit!=0)
    $select->limit($limit,$start);
@@ -38,6 +40,40 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
   else
   {
    return $rows->toArray();
+  }
+ }
+ 
+ public function getProductsByTopCat($topCat,$start,$limit)
+ {
+     $select = $this->select()
+                           ->from(array('p'=>'ln_product_my'))
+                           ->where(" topCategoryId=$topCat AND mycat_id=".MYCAT." AND product_status IN (0,2) and new>0")
+                           ->order("new");
+   
+  if($limit!=0)
+   $select->limit($limit,$start);
+  $rows = $this->fetchAll($select);
+  $res = $rows->toArray();
+  
+  if (count($res)==0)
+  {
+    $select = $this->select()
+                           ->from(array('p'=>'ln_product_my'))
+                           ->where(" topCategoryId=$topCat AND mycat_id=".MYCAT." AND product_status IN (0,2)")
+                           ->order("new DESC");  
+    if($limit!=0)
+    $select->limit($limit,$start);
+    $rows = $this->fetchAll($select);
+    $res = $rows->toArray();
+  }
+  
+  if(!$rows)
+  {
+   throw new Exception('There are no cats here');
+  }
+  else
+  {
+   return $res;
   }
  }
 
@@ -277,6 +313,11 @@ class Application_Model_DbTable_Products extends Zend_Db_Table_Abstract
    $data = array('product_status'=>$status);
    $where = $this->getAdapter()->quoteInto('id = ?', $id);
    $this->update($data,$where);
+ }
+ 
+ public function updateProd($ar,$id)
+ {
+  return $this->update($ar,'id='.$id);         
  }
 
 }

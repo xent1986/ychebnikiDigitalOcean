@@ -27,6 +27,7 @@
   </div>
   <?php  $i++; if ($i==4){$i=0; echo "</div>";}?>
   <?php endforeach;?>
+  <?php if(($i<4)&&($i>0)) {echo "</div>";} ?>
  <script>
   checkCart();
  </script>

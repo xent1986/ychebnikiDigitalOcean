@@ -345,4 +345,11 @@ function glob_CheckComma($str)
     return $res;
 }
 
+function glob_GetRandomStart()
+{
+   $w=date('W',time()+TIME_DIFFER);
+   $start = ($w==0?1:$w-1)*3+1;
+   return $start;
+}
+
 ?>

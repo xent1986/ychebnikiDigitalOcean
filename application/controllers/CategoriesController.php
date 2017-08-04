@@ -50,53 +50,30 @@ class CategoriesController extends Zend_Controller_Action
 
   if ($cat)
   {
-   $cat = intval($cat);
-   if (!$cc=$mycache->load("existcat".$cat)) //получаем КЭШ,если он есть. Если нет - делаем запрос
-   {
-       $cc = $this->selectExistCat($cat);
-       $mycache->save($cc,"existcat".$cat);
-   }
-   
-   if (!$cc) {
-     $ccc=1;
-   }
-   else
-   {
+    $cat = intval($cat);
     if (!$cache_ar=$mycache->load("getsubcats".$cat))// получаем КЭШ подкатегорий
     {
        $cache_ar = $this->section_getSubCats($cat);
        $mycache->save($cache_ar,"getsubcats".$cat);
     }
     $ar = $cache_ar;   
-   }
   }
   else
   {
    if ($topid!=0)
    {
     $topid = intval($topid);
-    if (!$cc=$mycache->load("existcat".$topid)) //получаем КЭШ,если он есть. Если нет - делаем запрос
-    {
-       $cc = $this->selectExistCat($topid);
-       $mycache->save($cc,"existcat".$topid);
-    }
-    
-    if (!$cc) {
-     $ccc=1;
-    }
-    else
-    {
+   
         if (!$cache_ar=$mycache->load("getsubcats".$topid))// получаем КЭШ подкатегорий
         {
            $cache_ar = $this->section_getSubCats($topid); 
            $mycache->save($cache_ar,"getsubcats".$topid);
         }
         $ar = $cache_ar;
-    }
    }
   }
   
-  if (is_array($ar))
+  /*if (is_array($ar))
   {
    $cacheID = glob_getCacheID($ar,"cat");
    if (!$cache_ar=$mycache->load($cacheID))
@@ -105,7 +82,7 @@ class CategoriesController extends Zend_Controller_Action
        $mycache->save($cache_ar,$cacheID);
    }
    $ar = $cache_ar;
-  }
+  }*/
   //print_r($ar); die;
   $this->view->subcats = $ar;
  }
@@ -124,6 +101,19 @@ class CategoriesController extends Zend_Controller_Action
    $res="";
    $db = new Application_Model_DbTable_Categories();
    $find_ar = $db->getCatsList($cat);
+   if ($find_ar) $res = $find_ar;
+   return $res;
+ }
+ 
+ private function section_getSubCatsPartly($cat)
+ {
+     global $priority_ar; //ищем среди приоритетных подкатегорий. переменная определена в utils/vars.php
+     $inCats = null;
+     if (array_key_exists($cat, $priority_ar))
+             $inCats = $priority_ar[$cat];
+     $res=null;
+   $db = new Application_Model_DbTable_Categories();
+   $find_ar = $db->getCatsListPartly($cat,$inCats);
    if ($find_ar) $res = $find_ar;
    return $res;
  }
@@ -166,16 +156,24 @@ class CategoriesController extends Zend_Controller_Action
    $id=$sec_ar[$tmp]['id'];
   }
 
-  $db = new Application_Model_DbTable_Products();
+  /*$db = new Application_Model_DbTable_Products();
   $cat = intval($cat);
   $cc = $this->selectExistCat($id);
   if (!$cc) {
   throw new Zend_Controller_Action_Exception('Такой категории у нас нет', 404);
   }
-  else
+  else*/
+  $subcats = $this->section_getSubCatsPartly($id);
+  
+  if (is_null($subcats))
   {
-  $this->_forward('get-products-by-cat','products',null,array('cat'=>$id));
+      $this->_forward('get-products-by-cat','products',null,array('cat'=>$id));
   }
+ else {
+      $this->_forward('get-news-by-cat','products',null,array('cats'=>$subcats,'curcat'=>$id));
+  }
+   
+  
  }
 
  public function categorylegendAction()

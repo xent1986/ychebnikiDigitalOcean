@@ -1,9 +1,28 @@
 <?php $this->headMeta()->setName('description',DESC);?>
-<?php foreach($this->prods as $val):?>
+<?php $this->headTitle($this->curcat['name']);?>
+<div class="products_all">
+    <?php
+        $pp = array('cat'=>$this->category,'section'=>$this->section);
+        echo $this->action('categorylegend','categories',null,$pp);
+    ?>
+    <div class="products_all_caption">
+        <div class="pa_caption_name left"><h1><?php echo $this->curcat['name'];?></h1></div>
+        <div class="clear"></div>
+    </div>
+<?php if ($this->countnews>0):?>   
+<?php foreach($this->news as $key => $val):?>
  <div class="prods_part">
-  <div class="prods_part_caption"><h2 style="color:<?php echo $val['color'];?>"><?php echo $val['part'];?></h2></div>
+     <div class="prods_part_caption">
+         <div class="left">
+            <h2><?php echo $val['name'];?></h2>
+         </div>
+         <div class="prods_part_postfix left">
+            <a noindex href="<?php echo $this->url(array('controller'=>'categories','action'=>'catlist','section'=>$this->section,'cat'=>$key),null,true);?>" title="<?php echo glob_quoteStr($val['name']);?>">посмотреть все товары категории</a>
+         </div>
+         <div class="clear"></div>
+     </div>
   <div class="prods_items_list">
-   <?php foreach($val['prods'] as $val2):?>
+   <?php foreach($val['products'] as $key2=>$val2):?>
     <div class="prods_item">
      <div class="prod_info">
      <?php $url = $this->url(array('controller'=>'products','action'=>'getdetails','item'=>$val2['translit']),null,true);?>
@@ -34,3 +53,8 @@
   </iframe>
  </div>
 <?php endforeach;?>
+<?php elseif($this->countnews==0): ?>
+    <div class="prducts_no_product">”пс... «десь все товары проданы</div>
+<?php endif;?>
+    
+</div>

@@ -49,19 +49,6 @@ var isvis=false;
   }
   );
 
-   /*$("#edSearch").autocomplete(domain+"application/utils/searchautocomplete.php", {
-        delay:10,
-        minChars:2,
-        matchSubset:1,
-        autoFill:true,
-        matchContains:1,
-        cacheLength:10,
-        selectFirst:true,
-        maxItemsToShow:10,
-  }).result(function(event,data,formatted){
-   return 1;
-   });*/
-
    var cntWatchedProds=0;
    $('.pw_item_img').each(function(){cntWatchedProds = cntWatchedProds+1;});
 
@@ -139,7 +126,6 @@ var isvis=false;
 
    $("#btApply").click(function(){
      yaCounter20755705.reachGoal('buyBtn');
-//     buyClickLog($("#goodname").html(),$("#myitem").val());
      buyClickLog($("#myitem").val());
      buyGood($("#myitem").val());
      return false;
@@ -273,7 +259,6 @@ function extractCartValue()
  {
    alert(data); 
    });
-  
 }
 
 function buyGood(id)
@@ -330,9 +315,6 @@ function delChecked()
 }
 
 function buyChecked(){
-
-/* var id = obj.attr('id');
- id = id.substr(3,id.length);  */
   t=1000;
   cart=$('iframe#myShopOnelineCartIframe');
  cart_src = cart.attr('src');
@@ -446,8 +428,6 @@ function clearHoldsTable()
   $('.holds').append("<div class='h_no_items'>Список отложенных товаров очищен</div>");
 }
 
-
-
 function change_checkbox(obj)
 {
  var ch = obj.find(':checkbox');
@@ -521,9 +501,7 @@ function checkHoldsInTable()
    {
     str = "<div class='pt_hold_exist'><a href='"+domain+"holdlist'>в отложенных</a></div>";
    }
-    //prnt.find(".clear").remove();
     prnt.append(str);
-    //prnt.append("<div class='clear'></div>");
  }
  );
 }
@@ -637,7 +615,6 @@ function checkGoodExist(id)
    var flag;
    if (data==0) {$('#sAvail').html('<img src=\"/images/cancel.png\" title=\"Нет в наличии\">'); flag=true; $.get(domain+"products/changeproductstatus",{prodid:id,status:1});}
    if (data==1) {$('#sAvail').html('<img src=\"/images/clean.png\" title=\"Есть в наличии\">'); flag=false;}
-   //$("#btApply").attr("disabled",flag);
   }
  );
 }
@@ -758,24 +735,12 @@ function addComment(id)
  }
 }
 
-/*function buyClickLog(name,id)
-{
-  $.get(domain+"cart/addlog",{mode:'log',good:name,id:id},
-   function(data)
-   {
-   // $("#buyForm").submit();
-   return 1;
-   }
-  );
-} */
-
 function buyClickLog(id)
 {
  href = window.location.href;
   $.get(domain+"cart/addlog",{mode:'log',id:id,href:href},
    function(data)
    {
-   // $("#buyForm").submit();
    return 1;
    }
   );

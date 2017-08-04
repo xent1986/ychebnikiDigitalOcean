@@ -27,16 +27,98 @@ class ProductsController extends Zend_Controller_Action
   //$db2 = new Application_Model_DbTable_Categories();
   foreach($sec_ar as $val)
   {
-   //$cat = $db2->getCategoryById($val['id']);
-   //$childs = $cat[0]['children'];
-   $w=date('W',time()+TIME_DIFFER);
-   $start = ($w==0?1:$w-1)*3+1;
+   $start = glob_GetRandomStart();
    $res[] = array('part'=>$val['name'],'prods'=>$db1->getProductsByTopCat($val['id'],$start,4),'color'=>$val['color']);
   }
    return $res;
  }
 
+ public function getNewsByCatAction()
+ {
+     global $numNewsOnPage;
+     global $numProdsInCat;
+     $cats = $this->_getParam('cats');
+     $curcat = $this->_getParam('curcat');
+     $section = $this->_getParam('section');
+     $this->view->caption = "Новинки";
+     $this->view->category = $curcat;
+     $this->view->section=$section;
+     $ar_news = array();
+     $db = new Application_Model_DbTable_ProductsNews();
+     $db_p = new Application_Model_DbTable_Products();
+     $db_c = new Application_Model_DbTable_Categories();
+     //получаем атрибуты текущей категории
+     $ccat = $db_c->getCategoryById($curcat);
+     //получаем новинки из подкатегорий
+     $oldcat=-1; $cur_ar = []; $oldcatname="";
+     $news = $db->getProductNewsByPrnt($curcat);
+     foreach ($news as $val)
+     {
+         if ($val['categoryID']!=$oldcat)
+         {
+             if ($oldcat!=-1)
+             {
+                 $ar_news[$oldcat]=array('name'=>$oldcatname,'products'=>$cur_ar);
+             }
+             $cur_ar = array();
+             $oldcat = $val['categoryID'];
+             $oldcatname = $val['categoryName'];
+         }
+         $cur_ar[] = $val;
+     }
+     if (count($news)>0)
+     {
+         $ar_news[$oldcat]=array('name'=>$oldcatname,'products'=>$cur_ar);//дописываем последний элемент
+     }
+    
+     $count_news = count($ar_news);
+     if ($count_news<$numNewsOnPage)
+     {
+         foreach ($cats as $val)
+         {
+             if (!array_key_exists($val['cat'], $ar_news))
+             {
+                 $insert_ar = array();
+                 $news = $db_p->getProductsByCat($val['childs'], 1, $numProdsInCat);
+                 if (count($news)>0)
+                    {
+                       //добавляем новинки в таблтцу ln_product_news
+                        foreach ($news as $val2)
+                        {
+                            $insert_ar = array("prntCategoryID"=>$curcat,
+                                           "categoryID"=>$val['cat'],
+                                           "id"=>$val2['id'],
+                                           "categoryName"=>$val['name'],
+                                           "book"=>$val2['book'],
+                            "name"=>$val2['name'],
+                            "author"=>$val2['author'],
+                            "producer"=>$val2['producer'],
+                            "series"=>$val2['series'],
+                            "year"=>$val2['year'],
+                            "pages"=>$val2['pages'],
+                            "picture"=>$val2['picture'],
+                            "price"=>$val2['price'],
+                            "translit"=>$val2['translit'],
+                            "link_ID"=>$val2['link_ID']);
+                            $db->addProductNews($insert_ar);
+                        }
+                        $count_news++;
+                        $ar_news[$val['cat']] = array("name"=>$val['name'],"products"=>$news);
+                    }
+             }
+            if($count_news==$numNewsOnPage)
+            {
+             break;
+            }
+        }
+     }
+     //print_r($ar_news);die;
+     $this->view->news = $ar_news;
+     $this->view->curcat = $ccat[0];
+     $this->view->countnews = $count_news;
 
+ }
+ 
  public function getProductsByCatAction()
  {
   $view = new Zend_View();
@@ -100,20 +182,48 @@ class ProductsController extends Zend_Controller_Action
   $item = $this->_getParam("item");
   $this->view->item=$item;
   $intval = is_numeric($item);
-
+  $isarc = false;
+  //выбираем товар из основой таблицы
   $db = new Application_Model_DbTable_Products();
-  if (!$intval)
-   $product = $db->getProductByTranslit($item);
-  else
+  if (!$intval){
+      $product = $db->getProductByTranslit($item);
+  }
+  else{
     $product = $db->getProductById($item);
+  }
+  //если в основной таблице товара нет, берем из архивной
+  if (count($product)==0)
+  {
+      $db2 = new Application_Model_DbTable_ProductsArc();
+      if (!$intval)
+      {
+        $product = $db2->getProductByTranslit($item);  
+      }
+      else{
+        $product = $db2->getProductById($item);  
+      }
+      $isarc = true;
+  }
 
   if (count($product)>0)
   {
-    $product = $product[0];
+      $product = $product[0];
+    //увеличиваем кол-во просмотров
+    $cntwatched = $product['watched']+1; //увеличиваем текущее значение на 1
+    $upd_ar = array('watched'=>$cntwatched);
+    if ($isarc){
+        $db2->updateProd($upd_ar, $product['id']);
+    }
+    else{
+        $db->updateProd($upd_ar, $product['id']);
+    }
+    //-----------------------------  
+    
     $this->view->entrance = glob_makeEntrance($product);
     $watched = array();
-    if (isset($_COOKIE['watched']))
+    if (isset($_COOKIE['watched'])){
      $watched = $db->getProductsByIds($_COOKIE['watched']);
+    } 
     $this->view->watched = $watched;
     $this->product_addToAlreadyWatched($product['id']);
     $cats_ar = $this->category_getItemCats($product);
@@ -130,7 +240,7 @@ class ProductsController extends Zend_Controller_Action
     $pager=null;
     $db->getProductsBySearch($params,$pager);
     $this->view->similar = $pager->getCurrentItems();//->toArray();
-    $this->view->adsense = glob_getGoogleAd(3);
+    //$this->view->adsense = glob_getGoogleAd(3);
    }
    else { $this->_helper->viewRenderer('noproduct');}
 
