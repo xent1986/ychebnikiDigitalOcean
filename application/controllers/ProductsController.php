@@ -22,14 +22,19 @@ class ProductsController extends Zend_Controller_Action
  private function products_getStartProds()
  {
   global $sec_ar;
+  global $mycache;
   $res = array();
   $db1 = new Application_Model_DbTable_Products();
-  //$db2 = new Application_Model_DbTable_Categories();
-  foreach($sec_ar as $val)
-  {
-   $start = glob_GetRandomStart();
-   $res[] = array('part'=>$val['name'],'prods'=>$db1->getProductsByTopCat($val['id'],$start,4),'color'=>$val['color']);
-  }
+  $start = $start = glob_GetRandomStart();
+  if (!$res=$mycache->load("getstartprods".$start))// получаем КЭШ стартовых товаров для старта $start
+    {
+        foreach($sec_ar as $val)
+        {
+         $res[] = array('part'=>$val['name'],'prods'=>$db1->getProductsByTopCat($val['id'],$start,4),'color'=>$val['color']);
+        }
+       $mycache->save($res,"getstartprods".$start);
+    }
+  
    return $res;
  }
 
