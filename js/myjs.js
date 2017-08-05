@@ -126,7 +126,7 @@ var isvis=false;
 
    $("#btApply").click(function(){
      yaCounter20755705.reachGoal('buyBtn');
-     buyClickLog($("#myitem").val());
+     //buyClickLog($("#myitem").val());
      buyGood($("#myitem").val());
      return false;
     }
@@ -220,7 +220,7 @@ function init_VK()
 function buyFromCat(id,obj)
 {
   yaCounter20755705.reachGoal('buyBtn');
-  buyClickLog(id);
+  //buyClickLog(id);
   var cart=$('iframe#myShopOnelineCartIframe');
   var cart_src = cart.attr('src');
   var prnt = obj.parent();
