@@ -17,7 +17,7 @@
             <h2><?php echo $val['name'];?></h2>
          </div>
          <div class="prods_part_postfix left">
-            <a noindex href="<?php echo $this->url(array('controller'=>'categories','action'=>'catlist','section'=>$this->section,'cat'=>$key),null,true);?>" title="<?php echo glob_quoteStr($val['name']);?>">посмотреть все товары категории</a>
+            <a rel="nofollow" href="<?php echo $this->url(array('controller'=>'categories','action'=>'catlist','section'=>$this->section,'cat'=>$key),null,true);?>" title="<?php echo glob_quoteStr($val['name']);?>">посмотреть все товары категории</a>
          </div>
          <div class="clear"></div>
      </div>
@@ -29,7 +29,7 @@
      <?php $pic = ($val2['picture']==''?'/images/nopic.png':$val2['picture']);?>
      <div class="prod_name"><a href="<?php echo $url;?>" title="<?php echo glob_quoteStr($val2['name']);?>"><?php echo $val2['name']?></a></div>
       <div class="prod_img">
-          <span class="r" r="<?php echo $url;?>"><img width="120" onload="resizeme($(this));" alt="<?php echo glob_quoteStr($val2['name']);?>" src="<?php echo $pic;?>"></span>
+          <a href="<?php echo $url;?>"><img width="120" onload="resizeme($(this));" alt="<?php echo glob_quoteStr($val2['name']);?>" src="<?php echo $pic;?>"></a>
       </div>
       <div class="prod_details">
           <?php echo glob_productInfoFormat2("author", $val2['author']);?>
@@ -49,10 +49,10 @@
     </div>
    <?php endforeach;?>
   </div>
-  <iframe name="cartdetailframe" id="cartdetailframe" frameborder="no" width="0" height="0" src="<?php echo DOMAIN_PATH.'/application/views/scripts/cartFrame.html';?>">
-  </iframe>
  </div>
 <?php endforeach;?>
+  <iframe name="cartdetailframe" id="cartdetailframe" frameborder="no" width="0" height="0" src="<?php echo DOMAIN_PATH.'/application/views/scripts/cartFrame.html';?>">
+  </iframe>    
 <?php elseif($this->countnews==0): ?>
     <div class="prducts_no_product">”пс... «десь все товары проданы</div>
 <?php endif;?>

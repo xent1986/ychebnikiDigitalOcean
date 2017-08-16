@@ -1,11 +1,13 @@
  <div id="top_left" class="top_left left">
   <div id="top_left_top" class="top_left_top">
+   <noindex>   
    <ul>
-    <li><noindex><a rel="nofollow" title="Интернет-магазин Учебники" id="homelink" href="<?php echo DOMAIN_PATH;?>"><div  class="tools_home">&nbsp</div></a></noindex></li>
+    <li><a rel="nofollow" title="Интернет-магазин Учебники" id="homelink" href="<?php echo DOMAIN_PATH;?>"><div  class="tools_home">&nbsp</div></a></li>
     <li><div  class="tools_map"></div></li>
     <li id="mailTool"><script> $("#mailTool").append('<a title="Написать нам" href="mailto:info@ychebniki.ru"><div class="tools_mail">&nbsp</div></a>'); </script></li>
     <li><a title="Добавить в избранное"><div id="toolFavorite" class="tools_favorite">&nbsp</div></a></li>
    </ul>
+   </noindex>   
   </div>
   <div id="top_left_bottom" class="top_left_bottom">
   <?php $url = $this->url(array('controller'=>'info','action'=>'contacts'),null,true);?>

@@ -7,7 +7,7 @@
      <div class="prod_info">
      <div class="prod_name"><a href="<?php echo $url;?>" title="<?php echo glob_quoteStr($val['name']);?>"><?php echo $val['name']?></a></div>
       <div class="prod_img">
-          <span class="r" r="<?php echo $url;?>"><img width="120" onload="resizeme($(this));" alt="<?php echo glob_quoteStr($val['name']);?>" src="<?php echo $pic;?>"></span>
+          <a href="<?php echo $url;?>"><img width="120" onload="resizeme($(this));" alt="<?php echo glob_quoteStr($val['name']);?>" src="<?php echo $pic;?>"></a>
       </div>
       <div class="prod_details">
           <?php echo glob_productInfoFormat2("author", $val['author']);?>
