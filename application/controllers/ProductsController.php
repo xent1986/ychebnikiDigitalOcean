@@ -197,6 +197,7 @@ class ProductsController extends Zend_Controller_Action
     $product = $db->getProductById($item);
   }
   //если в основной таблице товара нет, берем из архивной
+  /*
   if (count($product)==0)
   {
       $db2 = new Application_Model_DbTable_ProductsArc();
@@ -209,19 +210,19 @@ class ProductsController extends Zend_Controller_Action
       }
       $isarc = true;
   }
-
+   */
   if (count($product)>0)
   {
       $product = $product[0];
     //увеличиваем кол-во просмотров
-    $cntwatched = $product['watched']+1; //увеличиваем текущее значение на 1
+    /*$cntwatched = $product['watched']+1; //увеличиваем текущее значение на 1
     $upd_ar = array('watched'=>$cntwatched);
     if ($isarc){
         $db2->updateProd($upd_ar, $product['id']);
     }
     else{
         $db->updateProd($upd_ar, $product['id']);
-    }
+    }*/
     //-----------------------------  
     
     $this->view->entrance = glob_makeEntrance($product);
