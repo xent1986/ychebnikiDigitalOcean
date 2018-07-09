@@ -32,7 +32,7 @@ class InfoController extends Zend_Controller_Action
  private function delivery_getRequired($str)
  {
    $matches=array();
-   if (preg_match('/(<td><div class="lh1px.*Ќабор доступных способов доставки зависит от региона доставки.*<li><a href="\/my\/helper_71">ƒополнительные курьерские службы<.*<\/td>)/Uis',$str,$matches))
+   if (preg_match('/(<td><div class="lh1px.*Ќабор доступных способов доставки зависит от населЄнного пункта и выбранных вами товаров.*<li><a href="\/my\/helper_100">ќграничени€ по доставке<.*<\/td>)/Uis',$str,$matches))
    {
     $s = $matches[1];//return $matches[1];
    } else $s= '';
