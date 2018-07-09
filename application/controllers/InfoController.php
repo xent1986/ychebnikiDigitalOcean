@@ -24,7 +24,7 @@ class InfoController extends Zend_Controller_Action
    $info = glob_updateLinks($info);
   }
   else $info="";
-//  $info = "";
+  $info = "test";
   $this->view->delivery = $info;
 
  }
