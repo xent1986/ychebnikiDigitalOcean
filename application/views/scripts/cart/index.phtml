@@ -3,13 +3,12 @@
 <div class="wishes">”важаемый покупатель, мы очень рады, что вы воспользовались услугами нашего интернет-магазина. ≈сли вы уже определились c выбором, пожалуйста, помогите определитьс€ и другим посетител€м, оставьте отзывы на приобретаемые товары. Ѕольшое спасибо.</div>
 <div align="center">
            <div style="width:940px">
-             <script type="text/javascript">
-              var myShopPartnerId = '3741_3';
-              var myShopExternalCSS = '';
+            <script type="text/javascript">
+              var myShopPartnerId = '<?php echo PARTNER;?>';
               var myShopClearCartURL = '';
-              var str = location;
-              document.write('<scr'+'ipt type="text/javascript" charset="windows-1251" src="http://p.my-shop.ru/order?form=JS_embed&partner='+myShopPartnerId+'&'+location.search.substring(1)+(myShopExternalCSS?'&extcss='+encodeURIComponent(myShopExternalCSS):'')+(myShopClearCartURL?'&clearcart='+encodeURIComponent(myShopClearCartURL):'')+'&nocache='+Math.ceil(Math.random()*1000000)+'"></sc'+'ript>');
-             </script>
+              var myShopColor1 = '#FFFFFF';
+              document.write('<scr'+'ipt type="text/javascript" src="https://my-shop.ru/embed?q=order&partner_id='+myShopPartnerId+'&'+location.search.substring(1)+'&clearcart='+encodeURIComponent(myShopClearCartURL)+'&color1='+encodeURIComponent(myShopColor1)+'&nocache='+Math.ceil(Math.random()*1000000)+'"></sc'+'ript>');
+            </script>
            </div>
           </div>
 
