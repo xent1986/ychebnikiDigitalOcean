@@ -8,11 +8,12 @@
  <div class="holds_td_price left">
   <div class="holds_price"><?php echo $this->price." руб.";?></div>
   <div class="holds_btn_buy">
-   <FORM id="buyForm" method="POST" action="http://p.my-shop.ru/order">
+   <FORM id="buyForm" method="POST" action="https://my-shop.ru/embed">
     <input type="hidden" value="1" name="quantity" id="itemcnt">
     <input type="hidden" value="<?php echo ($this->link_ID==0?$this->id:$this->link_ID);?>" name="item" id="myitem">
-    <input type="hidden" value="<?php echo PARTNER;?>" name="partner">
+    <input type="hidden" value="<?php echo PARTNER;?>" name="partner_id">
     <input type="hidden" value="cartAddItem" name="action">
+    <input type="hidden" value="add_item" name="q">
     <input type="submit" id="btApplyHold" value="Купить">
    </FORM>
   </div>

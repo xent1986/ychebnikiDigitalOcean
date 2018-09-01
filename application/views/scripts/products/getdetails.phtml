@@ -26,9 +26,10 @@
          updateGoodPrice(<?php echo ($this->details['link_ID']==0?$this->details['id']:$this->details['link_ID']);?>,<?php echo $this->details['price'];?>,<?php echo $this->details['id']?>);
         </script>
         <div class="pd_buy_form">
-         <FORM action="http://p.my-shop.ru/order" id="buyForm" method="POST">
+         <FORM action="https://my-shop.ru/embed" id="buyForm" method="POST">
           <input type="hidden" name="action" value="cartAddItem">
-          <input type="hidden" name="partner" value="3741_3">
+          <input type="hidden" name="q" value="add_item">
+          <input type="hidden" name="partner_id" value="3741_3">
           <input id="myitem" name="item" type="hidden" value="<?php echo ($this->details['link_ID']==0?$this->details['id']:$this->details['link_ID']);?>">
           <input id="linkitem" name="link" type="hidden" value="<?php echo $this->details['link_ID'];?>">
           <input id="itemcnt" type="hidden" name="quantity" value="1">
@@ -71,7 +72,7 @@
    </section>
    <noindex>
    <div class="social_share">
-    <script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+    <!--script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script-->
     <div class="yashare-auto-init" data-yashareType="button" data-yashareQuickServices="yaru,vkontakte,facebook,twitter,odnoklassniki,moimir,lj"></div>
    </div>
    </noindex>    

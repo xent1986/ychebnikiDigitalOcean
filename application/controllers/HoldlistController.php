@@ -45,7 +45,9 @@ public function getholdsAction()
     $db = new Application_Model_DbTable_Products();
     $this->view->holds = $db->getProductsByIds($items);
     $out = $this->view->render("products/getholds.phtml");
-    echo iconv("windows-1251","UTF-8",$out); exit;
+    //echo iconv("windows-1251","UTF-8",$out); 
+    echo $out; 
+    exit;
    }
    else echo '';
   }
