@@ -219,8 +219,8 @@ function init_VK()
 
 function buyFromCat(id,obj)
 {
-  /*yaCounter20755705.reachGoal('buyBtn'); - включить когда заработает метрика*/
-  //buyClickLog(id);
+ //yaCounter20755705.reachGoal('buyBtn'); - включить когда заработает метрика
+    //buyClickLog(id);
   var cart=$('iframe#myShopOnelineCartIframe');
   var cart_src = cart.attr('src');
   var prnt = obj.parent();
