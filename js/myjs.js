@@ -219,7 +219,7 @@ function init_VK()
 
 function buyFromCat(id,obj)
 {
- //yaCounter20755705.reachGoal('buyBtn'); - включить когда заработает метрика
+ yaCounter20755705.reachGoal('buyBtn');
     //buyClickLog(id);
   var cart=$('iframe#myShopOnelineCartIframe');
   var cart_src = cart.attr('src');
